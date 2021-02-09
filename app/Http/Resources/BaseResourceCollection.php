@@ -9,12 +9,17 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class BaseResourceCollection extends ResourceCollection
 {
-    protected $collectionName = 'list';
-
+    public function __construct($resource, $collects = null)
+    {
+        if ($collects) {
+            $this->collects = $collects;
+        }
+        parent::__construct($resource);
+    }
     public function toArray($request)
     {
         return [
-            "{$this->collectionName}" => $this->collection
+            'list' => $this->collection
         ];
     }
 
