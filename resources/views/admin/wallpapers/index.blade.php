@@ -10,6 +10,9 @@
                             <a href="{{ route('wallpapers.create') }}" class="btn btn-sm btn-primary">
                                 Добавить
                             </a>
+                            <a href="{{ route('wallpapers.create-many') }}" class="btn btn-sm btn-primary">
+                                Множественная загрузка
+                            </a>
                         </div>
                         <div class="card-tools">
                             <div class="input-group input-group-sm" id="table-search">

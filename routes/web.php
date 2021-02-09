@@ -29,4 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', UserController::class)->except(['show']);
     Route::resource('categories', CategoryController::class)->except(['show']);
     Route::resource('wallpapers', WallpaperController::class)->except(['show']);
+    Route::get('wallpapers/create/many', [WallpaperController::class, 'createMany'])->name('wallpapers.create-many');
+    Route::post('wallpapers/store/many', [WallpaperController::class, 'storeMany'])->name('wallpapers.store-many');
+
 });

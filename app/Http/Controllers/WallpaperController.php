@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Wallpapers\ManyStoreWallpaperRequest;
 use App\Http\Requests\Wallpapers\StoreWallpaperRequest;
 use App\Http\Requests\Wallpapers\UpdateWallpaperRequest;
 use App\Models\Wallpaper;
 use App\Services\WallpaperService as Service;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class WallpaperController extends Controller
@@ -34,6 +36,18 @@ class WallpaperController extends Controller
     {
         return $this->editElement($wallpaper);
     }
+
+    public function createMany()
+    {
+        return $this->getView('create-many', $this->service->getDataForCreateMany());
+    }
+
+    public function storeMany(ManyStoreWallpaperRequest $request)
+    {
+        $this->service->storeMany($request->all());
+        return redirect()->route('wallpapers.index');
+    }
+
 
     public function update(UpdateWallpaperRequest $request, Wallpaper $wallpaper): RedirectResponse
     {
