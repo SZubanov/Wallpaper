@@ -71,7 +71,7 @@
                             <div class="custom-file">
                                 <input name="image[]" type="file"
                                        class="{{ $errors->has('image') ? 'is-invalid' : '' }}"
-                                       id="validatedCustomFile" accept=".jpg,.jpeg,.png,.webp"
+                                       id="validatedCustomFile" accept=".jpg,.jpeg,.png,.webp,.heic"
                                        data-id="image" multiple
                                        @if ($method == 'create') required @endif>
                                 @if($errors->has('image'))

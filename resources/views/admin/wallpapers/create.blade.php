@@ -96,7 +96,7 @@
                             <div class="custom-file">
                                 <input name="image" type="file"
                                        class="custom-file-input {{ $errors->has('image') ? 'is-invalid' : '' }}"
-                                       id="validatedCustomFile" accept=".jpg,.jpeg,.png,.webp"
+                                       id="validatedCustomFile" accept=".jpg,.jpeg,.png,.webp,.heic"
                                        data-id="image"
                                        @if ($method == 'create') required @endif>
                                 <label class="custom-file-label" for="validatedCustomFile" data-browse="Обзор"></label>

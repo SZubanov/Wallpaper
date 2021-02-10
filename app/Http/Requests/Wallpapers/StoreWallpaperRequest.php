@@ -31,7 +31,7 @@ class StoreWallpaperRequest extends FormRequest
             'device'      => ['required', Rule::in(array_flip(Wallpaper::$devices))],
             'caption_ru'  => 'nullable|string|max:255',
             'caption_en'  => 'nullable|string|max:255',
-            'image'       => 'required|image',
+            'image'       => 'required',
         ];
     }
 }

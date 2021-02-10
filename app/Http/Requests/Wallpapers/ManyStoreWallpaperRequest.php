@@ -29,7 +29,7 @@ class ManyStoreWallpaperRequest extends FormRequest
         return [
             'category_id' => 'required|exists:categories,id',
             'device'      => ['required', Rule::in(array_flip(Wallpaper::$devices))],
-            'image.*'       => 'required|image',
+            'image.*'       => 'required',
             'image'       => [ new MaxUploadedFileSize()],
         ];
     }
