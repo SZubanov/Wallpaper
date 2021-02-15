@@ -7,13 +7,13 @@
 
 ##API
 
-Для работы всех описанных в данной документации запросов необходимо передавать header ```token``` с предоставленным значением.
+
 Заголовки: 
 ```
 Content-Type:application/json
 X-Requested-With:XMLHttpRequest
 ```
-
+Каждый запрос может принимать GET параметр ``` page={int} ``` для управления пагинацией страниц
 Список Категорий GET /categories
 ```
 Response
@@ -48,7 +48,7 @@ Wallpaper
 
 Скачать изображение GET /wallpapers/download/id
 
-##Wallpaper
+## Wallpaper
 ```
 {
     int 'id',
@@ -66,7 +66,7 @@ Wallpaper
 }
 ```
 
-##Category
+## Category
 ```
 {
     int 'id',
