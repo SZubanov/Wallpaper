@@ -13,7 +13,8 @@
 Content-Type:application/json
 X-Requested-With:XMLHttpRequest
 ```
-Каждый запрос может принимать GET параметр ``` page={int} ``` для управления пагинацией страниц
+Каждый запрос может принимать GET параметр ``` page={int} ``` для управления пагинацией страниц  
+
 Список Категорий GET /categories
 ```
 Response
