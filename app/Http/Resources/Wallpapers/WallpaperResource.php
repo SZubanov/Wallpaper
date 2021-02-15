@@ -22,6 +22,10 @@ class WallpaperResource extends JsonResource
                 'name_ru' => $this->category->name_ru,
                 'name_en' => $this->category->name_en,
             ],
+            'caption'  => [
+                'caption_ru' => $this->caption_ru,
+                'caption_en' => $this->caption_en,
+            ],
             'date'      => $this->created_at,
             'device'    => Wallpaper::$devices[$this->device],
             'downloads' => $this->downloads ?? 0,
