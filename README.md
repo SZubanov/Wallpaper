@@ -15,19 +15,19 @@ X-Requested-With:XMLHttpRequest
 ```
 Каждый запрос может принимать GET параметр ``` page={int} ``` для управления пагинацией страниц  
 
-Список Категорий GET /categories
+Список Категорий ``` GET /categories ```
 ```
 Response
 list [ Category ]
 ```
 
-Категория GET /categories/{id}
+Категория ``` GET /categories/{id} ```
 ```
 Response
 Category
 ```
 
-Список изображений GET /wallpapers
+Список изображений ``` GET /wallpapers ```
 ```
 Request 
 {
@@ -40,14 +40,14 @@ Response
 list [ Wallpaper ]
 ```
 
-Изображение GET /wallpapers/id  
+Изображение ``` GET /wallpapers/id ```
 
 ```
 Response 
 Wallpaper
 ```
 
-Скачать изображение GET /wallpapers/download/id
+Скачать изображение ``` GET /wallpapers/download/id ```
 
 ## Wallpaper
 ```
