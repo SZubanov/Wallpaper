@@ -16,8 +16,12 @@ class WallpaperController extends Controller
     public function getByCategory(WallpaperRequest $request)
     {
         $models = Wallpaper::when(isset($request->category_id), fn($query) => $query->where('category_id', $request->category_id))
+            ->when(isset($request->orderBy) && $request->orderBy === Wallpaper::ORDER_DOWNLOADS, fn($query) => $query->orderBy('downloads', 'desc'))
+            ->when(isset($request->orderBy) && $request->orderBy === Wallpaper::ORDER_RANDOM, fn($query) => $query->inRandomOrder())
+            ->when(isset($request->orderBy) && $request->orderBy === Wallpaper::ORDER_LATEST, fn($query) => $query->latest())
             ->with('media')
             ->pagePaginate();
+
         return new BaseResourceCollection($models, WallpaperResource::class);
     }
 

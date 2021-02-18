@@ -20,6 +20,16 @@ class Wallpaper extends Model implements HasMedia
         self::TABLET => 'tablet',
     ];
 
+    public const ORDER_DOWNLOADS = 'downloads';
+    public const ORDER_RANDOM = 'random';
+    public const ORDER_LATEST = 'latest';
+
+    public static array $order = [
+        self::ORDER_DOWNLOADS,
+        self::ORDER_RANDOM,
+        self::ORDER_LATEST,
+    ];
+
     protected $fillable = [
         'category_id',
         'device',

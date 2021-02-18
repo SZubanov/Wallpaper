@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\Api;
 
+use App\Models\Wallpaper;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class WallpaperRequest extends FormRequest
 {
@@ -24,7 +26,8 @@ class WallpaperRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_id' => 'nullable|exists:categories,id'
+            'category_id' => 'nullable|exists:categories,id',
+            'orderBy' => ['nullable', Rule::in(Wallpaper::$order)]
         ];
     }
 }
