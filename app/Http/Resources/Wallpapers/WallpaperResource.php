@@ -15,6 +15,7 @@ class WallpaperResource extends JsonResource
      */
     public function toArray($request)
     {
+        $media = $this->getFirstMedia();
         return [
             'id'        => $this->id,
             'category'  => [
@@ -29,9 +30,9 @@ class WallpaperResource extends JsonResource
             'date'      => $this->created_at,
             'device'    => Wallpaper::$devices[$this->device],
             'downloads' => $this->downloads ?? 0,
-            'size'      => $this->getFirstMedia()->size,
-            'fullPath'  => $this->getFirstMedia()->getUrl(),
-            'url'       => $this->getFirstMedia()->getFullUrl()
+            'size'      => $media->size ?? '',
+            'fullPath'  => $media ? $media->getUrl() : '',
+            'url'       => $media ? $media->getFullUrl() : ''
         ];
     }
 }

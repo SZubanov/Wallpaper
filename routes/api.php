@@ -22,6 +22,7 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('wallpapers', [WallpaperController::class, 'getByCategory']);
         Route::get('wallpapers/{wallpaper}', [WallpaperController::class, 'show']);
         Route::get('wallpapers/download/{wallpaper}', [WallpaperController::class, 'download']);
+        Route::get('search/wallpapers', [WallpaperController::class, 'search']);
         Route::get('categories', [CategoryController::class, 'index']);
         Route::get('categories/{category}', [CategoryController::class, 'show']);
 //    });

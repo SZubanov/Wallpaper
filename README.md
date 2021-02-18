@@ -49,6 +49,21 @@ Wallpaper
 
 Скачать изображение ``` GET /wallpapers/download/id ```
 
+
+
+Поиск изображений ``` GET /search/wallpapers ```
+```
+Request 
+{
+    required|string q
+}
+```
+
+```
+Response 
+list [ Wallpaper ]
+```
+
 ## Wallpaper
 ```
 {

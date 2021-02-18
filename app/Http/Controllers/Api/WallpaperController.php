@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Api\SearchWallpaperRequest;
 use App\Http\Requests\Api\WallpaperRequest;
 use App\Http\Resources\BaseResourceCollection;
 use App\Http\Resources\Wallpapers\WallpaperResource;
@@ -31,5 +32,16 @@ class WallpaperController extends Controller
         $wallpaper->save();
         $mediaItem = $wallpaper->getFirstMedia();
         return response()->download($mediaItem->getPath(), $mediaItem->file_name);
+    }
+
+    public function search(SearchWallpaperRequest $request): BaseResourceCollection
+    {
+        $models = Wallpaper::where('caption_ru', 'like', '%' . trim($request->q) . '%')
+            ->orWhere('caption_en', 'like', '%' . trim($request->q) . '%')
+            ->with('media')
+            ->pagePaginate();
+
+        return new BaseResourceCollection($models, WallpaperResource::class);
+
     }
 }
