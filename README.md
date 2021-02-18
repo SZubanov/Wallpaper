@@ -32,6 +32,7 @@ Category
 Request 
 {
     nullable category_id
+    nullable orderBy - possible values: downloads, random, latest
 }
 ```
 
