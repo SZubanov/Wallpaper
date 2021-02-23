@@ -124,7 +124,7 @@
                                 @endif
                             </div>
                         </div>
-                        @if ($method == 'update' and !is_null($wallpaper->getFirstMediaUrl('video')))
+                        @if ($method == 'update' and $wallpaper->getFirstMediaUrl('video') !== '')
                             <div class="form-group">
                                 <video src="{{ $wallpaper->getFirstMediaUrl('video') }}" class="col" controls></video>
                             </div>
