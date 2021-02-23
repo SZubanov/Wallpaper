@@ -45,6 +45,7 @@ class WallpaperService extends ModelService
             'categories' => self::getCategories(),
             'devices'    => Wallpaper::$devices,
             'method'     => 'create',
+            'video'      => false,
             'formRoute'  => route('wallpapers.store-many')
         ]);
     }
@@ -74,12 +75,11 @@ class WallpaperService extends ModelService
 
     public function storeMany(array $data)
     {
-        foreach ($data['image'] as $image)
-        {
+        foreach ($data['image'] as $image) {
             $params = [
                 'category_id' => $data['category_id'],
-                'device' => $data['device'],
-                'image' => $image,
+                'device'      => $data['device'],
+                'image'       => $image,
             ];
 
             $this->store($params);
@@ -92,6 +92,10 @@ class WallpaperService extends ModelService
             $model->clearMediaCollection();
             $model->addMedia($data['image'])->toMediaCollection();
         }
+        if (isset($data['video'])) {
+            $model->clearMediaCollection('video');
+            $model->addMedia($data['video'])->toMediaCollection('video');
+        }
 
         return $model->update($data);
     }
@@ -103,8 +107,8 @@ class WallpaperService extends ModelService
                 'data' => 'id',
             ],
             [
-                'data' => 'category_id',
-                'sortable'   => false,
+                'data'     => 'category_id',
+                'sortable' => false,
             ],
             [
                 'data' => 'downloads',
@@ -113,15 +117,15 @@ class WallpaperService extends ModelService
                 'data' => 'caption_ru',
             ],
             [
-                'data' => 'size',
+                'data'     => 'size',
                 'sortable' => false,
             ],
             [
-                'data' => 'device',
+                'data'     => 'device',
                 'sortable' => false,
             ],
             [
-                'data' => 'created_at',
+                'data'     => 'created_at',
                 'sortable' => false,
             ],
             [

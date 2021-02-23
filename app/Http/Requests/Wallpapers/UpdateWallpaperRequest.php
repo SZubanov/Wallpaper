@@ -32,6 +32,7 @@ class UpdateWallpaperRequest extends FormRequest
             'caption_ru'  => 'nullable|string|max:255',
             'caption_en'  => 'nullable|string|max:255',
             'image'       => 'nullable',
+            'video'       => 'nullable',
         ];
     }
 }

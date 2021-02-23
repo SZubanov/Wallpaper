@@ -99,7 +99,7 @@
                                        id="validatedCustomFile" accept=".jpg,.jpeg,.png,.webp,.heic"
                                        data-id="image"
                                        @if ($method == 'create') required @endif>
-                                <label class="custom-file-label" for="validatedCustomFile" data-browse="Обзор"></label>
+                                <label class="custom-file-label" for="validatedCustomFile" data-browse="Обзор">Изображение</label>
                                 @if($errors->has('image'))
                                     <div class="error invalid-feedback">
                                         <strong>{{ $errors->first('image') }}</strong>
@@ -107,6 +107,28 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label for="video">
+                                Видео
+                            </label>
+                            <div class="custom-file">
+                                <input name="video" type="file"
+                                       class="custom-file-input {{ $errors->has('video') ? 'is-invalid' : '' }}"
+                                       id="validatedCustomVideo" data-id="video"
+                                       accept=".3gp,.3g2,.h261,.h263,.h264,.jpgv,.jpm,.jpgm,.mj2,.mjp2,.mp4,.mp4v,.mpg4,.mpeg,.mpg,.mpe,.m1v,.m2v,.ogv,.qt,.mov,.uvh,.uvvh,.uvm,.uvvm,.uvp,.uvvp,.uvs,.uvvs,.uvv,.uvvv,.dvb,.fvt,.mxu,.m4u,.pyv,.uvu,.uvvu,.viv,.webm,.f4v,.fli,.flv,.m4v,.mkv,.mk3d,.mks,.mng,.asf,.asx,.vob,.wm,.wmv,.wmx,.wvx,.avi,.movie,.smv,.ice">
+                                <label class="custom-file-label" for="validatedCustomVideo" data-browse="Обзор">Видео</label>
+                                @if($errors->has('video'))
+                                    <div class="error invalid-feedback">
+                                        <strong>{{ $errors->first('video') }}</strong>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        @if ($method == 'update' and !is_null($wallpaper->getFirstMediaUrl('video')))
+                            <div class="form-group">
+                                <video src="{{ $wallpaper->getFirstMediaUrl('video') }}" class="col" controls></video>
+                            </div>
+                        @endif
                         <div class="form-group">
                             <a id="image" class="fancybox"
                                @if ($method == 'update' and !is_null($wallpaper->media))
@@ -124,6 +146,7 @@
                                 >
                             </a>
                         </div>
+
                     </div>
                 </div>
                 <div class="row">

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Wallpaper\SearchWallpaperRequest;
-use App\Http\Requests\Api\Wallpaper\StoreWallpaperRequest;
 use App\Http\Requests\Api\Wallpaper\WallpaperRequest;
+use App\Http\Requests\Wallpapers\StoreWallpaperRequest;
 use App\Http\Resources\BaseResourceCollection;
 use App\Http\Resources\Wallpapers\WallpaperResource;
 use App\Models\Wallpaper;
