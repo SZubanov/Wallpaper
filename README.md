@@ -41,6 +41,23 @@ Response
 list [ Wallpaper ]
 ```
 
+Добавить изображение ``` POST /wallpapers ```
+```
+Request
+{
+    required                category_id,
+    required                device - possible values: 0(phone), 1(tablet),
+    nullable,string,max:255 caption_ru
+    nullable,string,max:255 caption_en
+    required                image
+    required                video
+}
+```
+```
+Response
+Wallpaper
+```
+
 Изображение ``` GET /wallpapers/id ```
 
 ```
@@ -71,15 +88,23 @@ list [ Wallpaper ]
     int 'id',
     array 'category'  => [
         int 'id',
-        string 'name_ru',
-        string 'name_en',
+        string 'ru',
+        string 'en',
     ],
    string 'date',
    string 'device',
    int 'downloads',
-   int 'size',
-   string 'fullPath',
-   string 'url'
+   array image => [
+      int 'size',
+      string 'fullPath',
+      string 'url'
+   ],
+   ?array video => [
+      int 'size',
+      string 'fullPath',
+      string 'url'
+   ],
+
 }
 ```
 
