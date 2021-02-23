@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Api;
+namespace App\Http\Requests\Api\Wallpaper;
 
 use App\Models\Wallpaper;
 use Illuminate\Foundation\Http\FormRequest;

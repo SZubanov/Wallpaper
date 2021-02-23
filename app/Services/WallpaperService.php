@@ -65,8 +65,9 @@ class WallpaperService extends ModelService
     public function store(array $data): Model
     {
         $wallpaper = $this->model->create($data);
-        if (isset($data['image'])) {
-            $wallpaper->addMedia($data['image'])->toMediaCollection();
+        $wallpaper->addMedia($data['image'])->toMediaCollection();
+        if (isset($data['video'])) {
+            $wallpaper->addMedia($data['video'])->toMediaCollection('video');
         }
         return $wallpaper;
     }

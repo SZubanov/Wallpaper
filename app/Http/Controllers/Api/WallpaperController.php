@@ -3,17 +3,24 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Api\SearchWallpaperRequest;
-use App\Http\Requests\Api\WallpaperRequest;
+use App\Http\Requests\Api\Wallpaper\SearchWallpaperRequest;
+use App\Http\Requests\Api\Wallpaper\StoreWallpaperRequest;
+use App\Http\Requests\Api\Wallpaper\WallpaperRequest;
 use App\Http\Resources\BaseResourceCollection;
 use App\Http\Resources\Wallpapers\WallpaperResource;
 use App\Models\Wallpaper;
-use Illuminate\Http\Request;
+use App\Services\WallpaperService as Service;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class WallpaperController extends Controller
 {
-    public function getByCategory(WallpaperRequest $request)
+    public function __construct(Service $service)
+    {
+        parent::__construct($service);
+    }
+
+
+    public function getByCategory(WallpaperRequest $request): BaseResourceCollection
     {
         $models = Wallpaper::when(isset($request->category_id), fn($query) => $query->where('category_id', $request->category_id))
             ->when(isset($request->orderBy) && $request->orderBy === Wallpaper::ORDER_DOWNLOADS, fn($query) => $query->orderBy('downloads', 'desc'))
@@ -25,9 +32,15 @@ class WallpaperController extends Controller
         return new BaseResourceCollection($models, WallpaperResource::class);
     }
 
-    public function show(Wallpaper $wallpaper)
+    public function show(Wallpaper $wallpaper): WallpaperResource
     {
         return new WallpaperResource($wallpaper->load('media'));
+    }
+
+    public function store(StoreWallpaperRequest $request)
+    {
+        $wallpaper = $this->service->store($request->validated());
+        return new WallpaperResource($wallpaper);
     }
 
     public function download(Wallpaper $wallpaper): BinaryFileResponse

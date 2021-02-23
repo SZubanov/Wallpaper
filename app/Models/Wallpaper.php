@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Wallpaper extends Model implements HasMedia
 {
@@ -37,6 +38,11 @@ class Wallpaper extends Model implements HasMedia
         'caption_ru',
         'caption_en'
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('video');
+    }
 
     public function category(): BelongsTo
     {
