@@ -18,13 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['prefix' => 'v1'], function () {
-//    Route::group(['middleware' => 'auth_token'], function () {
         Route::get('wallpapers', [WallpaperController::class, 'getByCategory']);
-        Route::post('wallpapers', [WallpaperController::class, 'store']);
+        Route::post('wallpapers', [WallpaperController::class, 'store'])->middleware('auth_token');
+        Route::delete('wallpapers/{wallpaper}', [WallpaperController::class, 'destroy'])->middleware('auth_token');
         Route::get('wallpapers/{wallpaper}', [WallpaperController::class, 'show']);
         Route::get('wallpapers/download/{wallpaper}', [WallpaperController::class, 'download']);
         Route::get('search/wallpapers', [WallpaperController::class, 'search']);
         Route::get('categories', [CategoryController::class, 'index']);
         Route::get('categories/{category}', [CategoryController::class, 'show']);
-//    });
 });

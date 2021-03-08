@@ -67,6 +67,7 @@ class WallpaperService extends ModelService
     {
         $wallpaper = $this->model->create($data);
         $wallpaper->addMedia($data['image'])->toMediaCollection();
+        MediaService::setBase64Preview($wallpaper);
         if (isset($data['video'])) {
             $wallpaper->addMedia($data['video'])->toMediaCollection('video');
         }
@@ -91,6 +92,7 @@ class WallpaperService extends ModelService
         if (isset($data['image'])) {
             $model->clearMediaCollection();
             $model->addMedia($data['image'])->toMediaCollection();
+            MediaService::setBase64Preview($model);
         }
         if (isset($data['video'])) {
             $model->clearMediaCollection('video');

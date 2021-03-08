@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -25,6 +26,10 @@ class Wallpaper extends Model implements HasMedia
     public const ORDER_RANDOM = 'random';
     public const ORDER_LATEST = 'latest';
 
+    private const PREVIEW_QUALITY = 50;
+    private const PREVIEW_WIDTH = 7;
+    private const PREVIEW_HEIGHT = 10;
+
     public static array $order = [
         self::ORDER_DOWNLOADS,
         self::ORDER_RANDOM,
@@ -36,12 +41,18 @@ class Wallpaper extends Model implements HasMedia
         'device',
         'downloads',
         'caption_ru',
-        'caption_en'
+        'caption_en',
+        'preview_base64'
     ];
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('video');
+        $this->addMediaCollection('preview');
+        $this->addMediaConversion('preview')
+            ->quality(self::PREVIEW_QUALITY)
+            ->width(self::PREVIEW_WIDTH)
+            ->height(self::PREVIEW_HEIGHT);
     }
 
     public function category(): BelongsTo

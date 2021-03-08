@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers\Api;
 
@@ -10,6 +11,7 @@ use App\Http\Resources\BaseResourceCollection;
 use App\Http\Resources\Wallpapers\WallpaperResource;
 use App\Models\Wallpaper;
 use App\Services\WallpaperService as Service;
+use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class WallpaperController extends Controller
@@ -37,10 +39,16 @@ class WallpaperController extends Controller
         return new WallpaperResource($wallpaper->load('media'));
     }
 
-    public function store(StoreWallpaperRequest $request)
+    public function store(StoreWallpaperRequest $request): WallpaperResource
     {
         $wallpaper = $this->service->store($request->validated());
         return new WallpaperResource($wallpaper);
+    }
+
+    public function destroy(Wallpaper $wallpaper): JsonResponse
+    {
+        $wallpaper->delete();
+        return response()->json(['success' => true, 'data' => 'ok', 'code' => 200]);
     }
 
     public function download(Wallpaper $wallpaper): BinaryFileResponse

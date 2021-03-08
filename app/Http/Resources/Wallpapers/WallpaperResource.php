@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Resources\Wallpapers;
 
@@ -16,8 +17,7 @@ class WallpaperResource extends JsonResource
      */
     public function toArray($request)
     {
-        /** @var Media $image */
-        $image = $this->getFirstMedia();
+
         /** @var Media $video */
         $video = $this->getFirstMedia('video');
         return [
@@ -34,7 +34,7 @@ class WallpaperResource extends JsonResource
             'date'      => $this->created_at,
             'device'    => Wallpaper::$devices[$this->device],
             'downloads' => $this->downloads ?? 0,
-            'image'     => new MediaResource($image),
+            'image'     => new ImageResource($this->resource),
             'video'     => new MediaResource($video),
         ];
     }
