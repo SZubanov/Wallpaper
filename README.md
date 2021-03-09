@@ -58,7 +58,7 @@ Request
     nullable,string,max:255 caption_ru
     nullable,string,max:255 caption_en
     required                image
-    required                video
+    nullable                video
 }
 ```
 ```
