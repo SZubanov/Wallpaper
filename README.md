@@ -15,17 +15,22 @@ X-Requested-With:XMLHttpRequest
 ```
 Каждый запрос может принимать GET параметр ``` page={int} ``` для управления пагинацией страниц  
 
+
 Список Категорий ``` GET /categories ```
 ```
 Response
 list [ Category ]
 ```
 
+
+
 Категория ``` GET /categories/{id} ```
 ```
 Response
 Category
 ```
+
+
 
 Список изображений ``` GET /wallpapers ```
 ```
@@ -41,7 +46,10 @@ Response
 list [ Wallpaper ]
 ```
 
-Добавить изображение ``` POST /wallpapers ```
+
+
+Добавить изображение ``` POST /wallpapers ```  
+Для работы запроса необходимо передавать header token с предоставленным значением.
 ```
 Request
 {
@@ -58,12 +66,19 @@ Response
 Wallpaper
 ```
 
-Изображение ``` GET /wallpapers/id ```
 
+
+Изображение ``` GET /wallpapers/id ```
 ```
 Response 
 Wallpaper
 ```
+
+
+Удалить Изображение ``` DELETE /wallpapers/id ```  
+Для работы запроса необходимо передавать header token с предоставленным значением.
+
+
 
 Скачать изображение ``` GET /wallpapers/download/id ```
 
@@ -81,6 +96,8 @@ Request
 Response 
 list [ Wallpaper ]
 ```
+
+
 
 ## Wallpaper
 ```
@@ -107,6 +124,8 @@ list [ Wallpaper ]
 
 }
 ```
+
+
 
 ## Category
 ```
